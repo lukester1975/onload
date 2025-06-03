@@ -407,6 +407,7 @@ sed \
   -e '/define "moddir extra"/ s/.*/%%global moddir extra\/onload/' \
   %{?debug:-e '/define "debug true"/ s/.*/%%global debug true/'} \
   %{?setuid:-e '/define "setuid true"/ s/.*/%%global setuid true/'} \
+  %{?have_sdci:-e '/define "have_sdci 1"/ s/.*/%%global have_sdci 1/'} \
   "%{_specdir}/openonload.spec" > %{_specdir}/%{name}-akmod.spec
 # Based on output of `kmodtool --akmod`
 mkdir -p %{buildroot}/%{_usrsrc}/akmods/
