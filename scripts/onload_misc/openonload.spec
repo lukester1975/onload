@@ -405,6 +405,7 @@ sed \
   -e "/bcond_without devel/ {s/without/with/; s/skip/include/}" \
   -e "/bcond_without akmod/ {s/without/with/; s/skip/include/}" \
   -e "/bcond_without dkms/ {s/without/with/; s/skip/include/}" \
+  -e "/bcond_with kmod/ {s/with/without/; s/include/skip/}" \
   -e "/bcond_with kernel_package_deps/ {s/with/without/; s/include/skip/}" \
   -e '/define "moddir extra"/ s/.*/%%global moddir extra\/onload/' \
   %{?debug:-e '/define "debug true"/ s/.*/%%global debug true/'} \
