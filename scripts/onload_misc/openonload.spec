@@ -387,7 +387,9 @@ mkdir -p "$i_prefix/etc/depmod.d"
   %{?with_user: --userfiles --modprobe --modulesloadd --udev %{?_sysusersdir:--adduser}} \
   %{?with_kmod: --kernelfiles --kernelver "%{kernel}"} \
   %{?with_devel: --headers} \
-  %{?have_sdci: --have-sdci}
+  %{?have_sdci: --have-sdci} \
+  --usrsbindir=%{_sbindir} \
+  --bindir=%{_bindir}
 %endif
 %if %{with user}
 # Removing these files is fine since they would only ever be generated on a build machine.
@@ -529,5 +531,3 @@ rm -fR $RPM_BUILD_ROOT
 
 * Mon Jul 27 2009 Derek Whayman <Derek.Whayman@barclayscapital.com> 20090812-bc001
 - New tarball from maintainer
-
-
