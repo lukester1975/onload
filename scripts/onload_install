@@ -253,7 +253,7 @@ install_userland() {
     install_x "$u64/tools/ip/onload_stackdump" "$i_usrbin/onload_stackdump"
     install_x "$u64/tools/ip/onload_tcpdump.bin" "$i_usrbin/onload_tcpdump.bin"
     install_x "$u64/tools/ip/onload_fuser" "$i_usrbin/onload_fuser"
-    install_x "$u64/tools/cplane/onload_cp_server" "$i_sbin/onload_cp_server"
+    install_x "$u64/tools/cplane/onload_cp_server" "$i_usrsbin/onload_cp_server"
     install_x "$u64/tools/onload_mibdump/onload_mibdump" \
               "$i_usrbin/onload_mibdump"
     [ -f "$u64/tools/onload_helper/onload_helper" ] && \
@@ -270,7 +270,7 @@ install_userland() {
 
   # Install scripts.
   try $docd "$TOP/scripts"
-  install_x onload_tool "$i_sbin/onload_tool"
+  install_x onload_tool "$i_usrsbin/onload_tool"
   install_x onload "$i_usrbin/onload"
   install_x sfcirqaffinity "$i_usrsbin/sfcirqaffinity"
   noreplace install_f onload_misc/onload_sysconfig "$i_etc/sysconfig/openonload"
@@ -348,8 +348,8 @@ install_adduser() {
   fi
 
   if [ -z "$i_prefix" ]; then
-    [ ! -x "$i_sbin/onload_tool" ] && fail "Cannot perform --adduser without onload_tool installed. Use --userfiles"
-    try $do "$i_sbin/onload_tool" ${verbose:+-v} set_cplane_user
+    [ ! -x "$i_usrsbin/onload_tool" ] && fail "Cannot perform --adduser without onload_tool installed. Use --userfiles"
+    try $do "$i_usrsbin/onload_tool" ${verbose:+-v} set_cplane_user
   fi
 }
 
@@ -618,7 +618,6 @@ calculate_install_paths() {
   # Where do we put everything?
   i_usr="$i_prefix$usrdir"
   i_usrlibexec="$i_prefix$libexecdir/onload"
-  i_sbin="$i_prefix$sbindir"
   i_usrbin="$i_prefix$bindir"
   i_usrsbin="$i_prefix$usrsbindir"
   i_usrlocal="$i_prefix$usrlocaldir"
@@ -680,7 +679,6 @@ noinitramfs=false
 nosfc=false
 python_install_layout=
 
-sbindir="/sbin"
 usrdir="/usr"
 sysconfdir="/etc"
 kernelmodulesdir="/lib/modules"
@@ -739,7 +737,6 @@ while [ $# -gt 0 ]; do
   --build-profile=*) buildargs="$buildargs $1"; build_profile="${1#--build-profile=}";;
   --python-layout=*) python_install_layout="--install-layout ${1#--python-layout=}";;
   --no-initramfs) noinitramfs=true;;
-  --sbindir=*) sbindir=${1#--sbindir=};;
   --usrsbindir=*) usrsbindir=${1#--usrsbindir=};;
   --bindir=*) bindir=${1#--bindir=};;
   --libexecdir=*) libexecdir=${1#--libexecdir=};;

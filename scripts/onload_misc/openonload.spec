@@ -484,7 +484,6 @@ rm -fR $RPM_BUILD_ROOT
 /usr/libexec/onload/profiles
 %{_bindir}/*
 %{_sbindir}/*
-/sbin/*
 %dir %{_includedir}/onload
 %{_includedir}/onload/extensions*.h
 %dir %{_includedir}/etherfabric
