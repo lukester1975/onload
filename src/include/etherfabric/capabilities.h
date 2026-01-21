@@ -204,7 +204,7 @@ enum ef_vi_capability_flags {
 /*! \brief Values returned by EF_VI_CAP_EXTRA_DATAPATHS */
 enum ef_vi_extra_datapaths {
   /** This interface supports the LLCT datapath, which should be selected by
-  ** supplying the EF_PD_LLCT PD flag at PD allocation time. */
+  ** supplying the EF_PD_EXPRESS PD flag at PD allocation time. */
   EF_VI_EXTRA_DATAPATH_EXPRESS = (1 << 0),
 };
 
@@ -316,4 +316,3 @@ ef_vi_capabilities_name(enum ef_vi_capability cap);
 #endif
 
 #endif /* __EFAB_CAPABILITIES_H__ */
-
