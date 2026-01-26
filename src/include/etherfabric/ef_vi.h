@@ -3105,7 +3105,7 @@ __ef_vi_reinit_txq_post_error(ef_vi* vi);
   for( ; \
        (vi)->ep_state->txq.removed < (vi)->ep_state->txq.added; \
        (vi)->ep_state->txq.removed++ ) \
-    if( EF_REQUEST_ID_MASK != \
+    if( (ef_request_id)EF_REQUEST_ID_MASK != \
         ((dma_id) = (vi)->vi_txq.ids[(vi)->ep_state->txq.removed & \
                                      (vi)->vi_txq.mask]) )
 
